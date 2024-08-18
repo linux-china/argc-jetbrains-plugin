@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -e
+
+# @cmd Hello task
+hello() {
+  echo "Hello"
+}
+
+# @cmd Build the project
+build() {
+  echo "Building the project..."
+}
+
