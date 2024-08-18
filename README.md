@@ -4,11 +4,11 @@ argc-jetbrains-plugin
 Argc assistant is a plugin for JetBrains IDEs that provides support for [Argc](https://github.com/sigoden/argc) shell script development.
 It includes the following features:
 
-  - Argc argument high light
-  - Argc live templates
-  - Argc shell template for shell and Argcfile.sh
+  - Argc comment tag highlight
+  - Argc live templates: argc-option, argc-flag, argc-env, argc-cmd, ...
+  - Argc file template: simple argc script file
   - Argc file type icon
-  - Argc completion for shell variables
+  - Argc completion/navigation for `argc_` variables
 
 <!-- Plugin description end -->
 
