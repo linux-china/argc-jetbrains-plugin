@@ -17,36 +17,47 @@ fun parseArgcComment(scriptText: String): List<ArgcArgument> {
             var shortName: String? = null
             var longName: String? = null
             var description: String? = null
-            var descOffset = 1
-            for (i in 1 until parts.size) {
-                if (!(parts[i].startsWith("-")
-                            || parts[i].startsWith("+")
-                            || parts[i].startsWith("<"))
-                ) {
-                    descOffset = i
-                    break
+            if (type == "arg") {
+                val name = parts[1]
+                val offset = name.indexOfFirst { !it.isLetterOrDigit() }
+                if (offset > 0) {
+                    longName = name.substring(0, offset)
+                }  else {
+                    longName = name
                 }
-            }
-            if (descOffset < parts.size) {
-                description = parts.subList(descOffset, parts.size).joinToString(" ")
-            }
-            if (descOffset > 1) {
-                for (i in 1 until descOffset) {
-                    val part = parts[i]
-                    if(part.startsWith("-") || part.startsWith("+")) {
-                        var name = if (part.startsWith("--")) {
-                            parts[i].substring(2)
-                        } else {
-                            part.substring(1)
-                        }
-                        val offset = name.indexOfFirst { !it.isLetterOrDigit() }
-                        if (offset > 0) {
-                            name = name.substring(offset)
-                        }
-                        if (name.length == 1) {
-                            shortName = name
-                        } else {
-                            longName = name
+                description = parts.subList(2, parts.size).joinToString(" ")
+            } else {
+                var descOffset = 1
+                for (i in 1 until parts.size) {
+                    if (!(parts[i].startsWith("-")
+                                || parts[i].startsWith("+")
+                                || parts[i].startsWith("<"))
+                    ) {
+                        descOffset = i
+                        break
+                    }
+                }
+                if (descOffset < parts.size) {
+                    description = parts.subList(descOffset, parts.size).joinToString(" ")
+                }
+                if (descOffset > 1) {
+                    for (i in 1 until descOffset) {
+                        val part = parts[i]
+                        if (part.startsWith("-") || part.startsWith("+")) {
+                            var name = if (part.startsWith("--")) {
+                                parts[i].substring(2)
+                            } else {
+                                part.substring(1)
+                            }
+                            val offset = name.indexOfFirst { !it.isLetterOrDigit() }
+                            if (offset > 0) {
+                                name = name.substring(offset)
+                            }
+                            if (name.length == 1) {
+                                shortName = name
+                            } else {
+                                longName = name
+                            }
                         }
                     }
                 }
