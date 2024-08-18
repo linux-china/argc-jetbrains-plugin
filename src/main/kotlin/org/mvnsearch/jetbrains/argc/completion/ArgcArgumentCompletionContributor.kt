@@ -44,6 +44,8 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
 
 
     fun shouldCompleteForVariable(variableName: String): Boolean {
-        return variableName.startsWith("\$argc_") || variableName.startsWith("argc_")
+        return variableName.startsWith("\$argc_")
+                ||  variableName.startsWith("\${argc_")
+                || variableName.startsWith("argc_")
     }
 }
