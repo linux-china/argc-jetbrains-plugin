@@ -9,6 +9,7 @@ It includes the following features:
   - Argc file template: simple argc script file
   - Argc file type icon
   - Argc completion/navigation for `argc_` variables
+  - Argc command line marker for `Argcfile.sh`
 
 <!-- Plugin description end -->
 
