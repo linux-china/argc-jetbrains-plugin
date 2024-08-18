@@ -12,7 +12,7 @@ fun parseArgcComment(scriptText: String): List<ArgcArgument> {
         .map { it.substring(3) }
         .filter { it.startsWith("option") || it.startsWith("flag") || it.startsWith("arg") }
         .map { commentTag ->
-            val parts = commentTag.split(" ")
+            val parts = commentTag.split("\\s+".toRegex())
             val type = parts[0]
             var shortName: String? = null
             var longName: String? = null
