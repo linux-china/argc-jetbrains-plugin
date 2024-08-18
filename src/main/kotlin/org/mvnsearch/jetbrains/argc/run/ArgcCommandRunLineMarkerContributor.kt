@@ -2,7 +2,6 @@ package org.mvnsearch.jetbrains.argc.run
 
 import com.intellij.execution.lineMarker.RunLineMarkerContributor
 import com.intellij.icons.AllIcons
-import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.project.DumbAware
 import com.intellij.psi.PsiElement
 import com.intellij.sh.psi.ShCommandsList
@@ -17,7 +16,7 @@ class ArgcCommandRunLineMarkerContributor : RunLineMarkerContributor(), DumbAwar
     override fun getInfo(element: PsiElement): Info? {
         if (element is ShCommandsList) {
             val psiFile = element.containingFile
-            if (psiFile != null && psiFile.name == "Argcfile.sh") {
+            if (psiFile != null && (psiFile.name == "argcfile.sh" || psiFile.name == "Argcfile.sh")) {
                 val emptyLineElement = element.prevSibling
                 if (emptyLineElement.text == "\n") {
                     val argcComment = emptyLineElement.prevSibling
