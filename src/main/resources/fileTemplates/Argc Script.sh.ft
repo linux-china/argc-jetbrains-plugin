@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# @describe       Description of the script
+# @meta author    your name
+# @flag -F --foo  Flag param description
+# @option --bar   Option param description
+# @arg param1     Positional param description
+
+eval "$(argc --argc-eval "$0" "$@")"
+
+echo foo: "\${argc_foo}"
+echo bar: "\${argc_bar}"
+eco param1: "\${argc_param1}"
