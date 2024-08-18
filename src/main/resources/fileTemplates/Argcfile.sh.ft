@@ -11,3 +11,4 @@ build() {
   echo "Building the project..."
 }
 
+eval "$(argc --argc-eval "$0" "$@")"
