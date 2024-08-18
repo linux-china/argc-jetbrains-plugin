@@ -19,6 +19,9 @@
         <completion.contributor language="Shell Script"
                                 implementationClass="org.mvnsearch.jetbrains.argc.completion.ArgcArgumentCompletionContributor"/>
         <psi.referenceContributor language="Shell Script"
-                implementation="org.mvnsearch.jetbrains.argc.reference.ArgcArgumentReferenceContributor"/>
+                                  implementation="org.mvnsearch.jetbrains.argc.reference.ArgcArgumentReferenceContributor"/>
+        <runLineMarkerContributor language="Shell Script"
+                                  implementationClass="org.mvnsearch.jetbrains.argc.run.ArgcCommandRunLineMarkerContributor"/>
+
     </extensions>
 </idea-plugin>
