@@ -18,5 +18,7 @@
                                 implementationClass="org.mvnsearch.jetbrains.argc.completion.ArgcCommentTagCompletionContributor"/>
         <completion.contributor language="Shell Script"
                                 implementationClass="org.mvnsearch.jetbrains.argc.completion.ArgcArgumentCompletionContributor"/>
+        <psi.referenceContributor language="Shell Script"
+                implementation="org.mvnsearch.jetbrains.argc.reference.ArgcArgumentReferenceContributor"/>
     </extensions>
 </idea-plugin>
