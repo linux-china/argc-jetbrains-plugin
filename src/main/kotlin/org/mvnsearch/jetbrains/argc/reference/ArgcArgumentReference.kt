@@ -24,8 +24,9 @@ class ArgcArgumentReference : PsiReferenceBase<PsiElement>, PsiPolyVariantRefere
             if (text.startsWith("# @")) {
                 val argumentDeclare = text.substring(3)
                 if (argumentDeclare.startsWith("option") || argumentDeclare.startsWith("flag")) {
-                    val argumentName =
+                    val argumentName = extractVariableName(
                         element.text.substring(rangeInElement.startOffset, rangeInElement.endOffset).substring(5)
+                    )
                     if (argumentName.length == 1 && text.contains("-$argumentName")) {
                         results.add(PsiElementResolveResult(comment))
                     } else {
@@ -34,8 +35,9 @@ class ArgcArgumentReference : PsiReferenceBase<PsiElement>, PsiPolyVariantRefere
                         }
                     }
                 } else if (argumentDeclare.startsWith("arg")) {
-                    val argumentName =
+                    val argumentName = extractVariableName(
                         element.text.substring(rangeInElement.startOffset, rangeInElement.endOffset).substring(5)
+                    )
                     if (text.contains(" $argumentName")) {
                         results.add(PsiElementResolveResult(comment))
                     }
@@ -43,6 +45,15 @@ class ArgcArgumentReference : PsiReferenceBase<PsiElement>, PsiPolyVariantRefere
             }
         }
         return results.toTypedArray()
+    }
+
+    private fun extractVariableName(expression: String): String {
+        val offset = expression.indexOfFirst { !it.isJavaIdentifierPart() }
+        return if (offset > 1) {
+            expression.substring(0, offset)
+        } else {
+            expression
+        }
     }
 
     override fun resolve(): PsiElement? {

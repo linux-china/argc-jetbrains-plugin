@@ -19,7 +19,7 @@ fun parseArgcComment(scriptText: String): List<ArgcArgument> {
             var description: String? = null
             if (type == "arg") {
                 val name = parts[1]
-                val offset = name.indexOfFirst { !it.isLetterOrDigit() }
+                val offset = name.indexOfFirst { !it.isJavaIdentifierPart() }
                 if (offset > 0) {
                     longName = name.substring(0, offset)
                 }  else {
@@ -49,7 +49,7 @@ fun parseArgcComment(scriptText: String): List<ArgcArgument> {
                             } else {
                                 part.substring(1)
                             }
-                            val offset = name.indexOfFirst { !it.isLetterOrDigit() }
+                            val offset = name.indexOfFirst { !it.isJavaIdentifierPart() }
                             if (offset > 0) {
                                 name = name.substring(offset)
                             }
