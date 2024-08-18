@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templateSet group="Argc">
+    <template name="argc-cmd" value="# @cmd command description&#10;$NAME$() {&#10;   $END$&#10;}"
+              description="Argc command declare" toReformat="false" toShortenFQNames="true">
+        <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+    <template name="argc-option" value="# @option -b --ob option description$END$" description="Argc option declation"
+              toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+    <template name="argc-flag" value="# @flag -b -fb flag description$END$" description="Argc flag declare"
+              toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+    <template name="argc-arg" value="# @arg values* Positional arg description&#10;"
+              description="Argc positional arg declare" toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+    <template name="argc-env" value="# @env DB_NAME! env variable description&#10;"
+              description="Argc env variable declare" toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+    <template name="argc-meta" value="# @meta $NAME$ $VALUE$" description="Argc meta declare" toReformat="false"
+              toShortenFQNames="true">
+        <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="SHELL_SCRIPT" value="true"/>
+        </context>
+    </template>
+</templateSet>
