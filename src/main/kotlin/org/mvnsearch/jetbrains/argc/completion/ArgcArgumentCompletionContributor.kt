@@ -15,6 +15,16 @@ import org.mvnsearch.jetbrains.argc.parseArgcComment
  * @author linux_china
  */
 class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
+    companion object {
+        val ARGC_ENV_VARIABLES = mapOf(
+            "SHELL_PATH" to "Specifies the path to the shell/bash executable used by Argc",
+            "SCRIPT_NAME" to "Overrides the default script filename",
+            "PWD" to "Current working directory",
+            "CWORD" to "final word",
+            "LAST_ARG" to "last argument",
+        )
+    }
+
     init {
         extend(
             CompletionType.BASIC, PlatformPatterns.psiElement(PsiElement::class.java).withLanguage(ShLanguage.INSTANCE),
@@ -32,9 +42,15 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
                             argcArguments.forEach {
                                 val name = it.longName ?: it.shortName
                                 result.addElement(
-                                    LookupElementBuilder.create(name!!).appendTailText("argc_${name}", true)
+                                    LookupElementBuilder.create("argc_${name}").appendTailText("argc_${name}", true)
                                 )
                             }
+                        }
+                    } else if (shouldCompleteForEnv(variable.text)) {
+                        ARGC_ENV_VARIABLES.forEach {
+                            result.addElement(
+                                LookupElementBuilder.create("ARGC_${it.key}").appendTailText("ARGC_${it.key}", true)
+                            )
                         }
                     }
                 }
@@ -45,7 +61,13 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
 
     fun shouldCompleteForVariable(variableName: String): Boolean {
         return variableName.startsWith("\$argc_")
-                ||  variableName.startsWith("\${argc_")
+                || variableName.startsWith("\${argc_")
                 || variableName.startsWith("argc_")
+    }
+
+    fun shouldCompleteForEnv(variableName: String): Boolean {
+        return variableName.startsWith("\$ARGC_")
+                || variableName.startsWith("\${ARGC_")
+                || variableName.startsWith("ARGC_")
     }
 }
