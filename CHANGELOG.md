@@ -3,5 +3,10 @@
 # argc-jetbrains-plugin Changelog
 
 ## [Unreleased]
+
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- Argc file template for argc file and Argcfile.sh
+- Argc argument highlight
+- Argc file type icon
+- Argc completion for argc tags
+- Argc completion for shell variables
