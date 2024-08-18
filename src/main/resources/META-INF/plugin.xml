@@ -1,18 +1,22 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.linuxchina.argcjetbrainsplugin</id>
+    <id>org.mvnsearch.jetbrains.plugins.argc-assistant</id>
     <name>argc-jetbrains-plugin</name>
-    <vendor>linux-china</vendor>
+    <vendor email="libing.chen@gmail.com">linux_china</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <dependencies>
+        <plugin id="com.jetbrains.sh"/>
+    </dependencies>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.linuxchina.argcjetbrainsplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <defaultLiveTemplates file="liveTemplates/ArgcScript.xml"/>
+        <annotator language="Shell Script"
+                   implementationClass="org.mvnsearch.jetbrains.argc.highlight.ArgcCommentTagHighlighterAnnotator"/>
+        <completion.contributor language="Shell Script"
+                                implementationClass="org.mvnsearch.jetbrains.argc.completion.ArgcCommentTagCompletionContributor"/>
+        <completion.contributor language="Shell Script"
+                                implementationClass="org.mvnsearch.jetbrains.argc.completion.ArgcArgumentCompletionContributor"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.linuxchina.argcjetbrainsplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
