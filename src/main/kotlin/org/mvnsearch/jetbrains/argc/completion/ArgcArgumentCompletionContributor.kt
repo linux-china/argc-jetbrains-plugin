@@ -42,9 +42,7 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
                             argcArguments.forEach {
                                 val name = it.longName ?: it.shortName
                                 if (it.description != null) {
-                                    result.addElement(
-                                        LookupElementBuilder.create("argc_${name}").withPresentableText(it.description)
-                                    )
+                                    result.addElement(LookupElementBuilder.create("argc_${name}").withPresentableText("argc_${name} - ${it.description}"))
                                 } else {
                                     result.addElement(LookupElementBuilder.create("argc_${name}"))
                                 }
