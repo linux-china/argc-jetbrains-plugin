@@ -50,7 +50,7 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
                         }
                     } else if (shouldCompleteForEnv(variable.text)) {
                         ARGC_ENV_VARIABLES.forEach {
-                            result.addElement(LookupElementBuilder.create("ARGC_${it.key}"))
+                            result.addElement(LookupElementBuilder.create("ARGC_${it.key}").withPresentableText("ARGC_${it.key} - ${it.value}").withCaseSensitivity(true))
                         }
                     }
                 }
