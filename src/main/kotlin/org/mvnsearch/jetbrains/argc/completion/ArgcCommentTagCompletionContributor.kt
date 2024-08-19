@@ -45,7 +45,7 @@ class ArgcCommentTagCompletionContributor : CompletionContributor(), DumbAware {
                     if (shouldCompleteForTag(comment.text)) {
                         ARGC_TAGS.forEach {
                             result.addElement(
-                                LookupElementBuilder.create(it.key + " ").withPresentableText(it.key)
+                                LookupElementBuilder.create(it.key + " ").withPresentableText("${it.key} - ${it.value}")
                             )
                         }
                     }
