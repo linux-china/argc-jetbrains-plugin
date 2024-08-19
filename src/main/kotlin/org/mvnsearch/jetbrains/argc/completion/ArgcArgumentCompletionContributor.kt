@@ -41,7 +41,13 @@ class ArgcArgumentCompletionContributor : CompletionContributor(), DumbAware {
                             val argcArguments = parseArgcComment(scriptFile.text)
                             argcArguments.forEach {
                                 val name = it.longName ?: it.shortName
-                                result.addElement(LookupElementBuilder.create("argc_${name}"))
+                                if (it.description != null) {
+                                    result.addElement(
+                                        LookupElementBuilder.create("argc_${name}").withPresentableText(it.description)
+                                    )
+                                } else {
+                                    result.addElement(LookupElementBuilder.create("argc_${name}"))
+                                }
                             }
                         }
                     } else if (shouldCompleteForEnv(variable.text)) {
