@@ -19,7 +19,7 @@
             <option name="SHELL_SCRIPT" value="true"/>
         </context>
     </template>
-    <template name="argc-arg" value="# @arg values* Positional arg description&#10;"
+    <template name="argc-arg" value="# @arg arg1 Positional arg description&#10;"
               description="Argc positional arg declare" toReformat="false" toShortenFQNames="true">
         <context>
             <option name="SHELL_SCRIPT" value="true"/>
