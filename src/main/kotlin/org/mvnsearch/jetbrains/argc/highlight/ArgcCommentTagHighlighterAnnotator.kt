@@ -21,7 +21,7 @@ class ArgcCommentTagHighlighterAnnotator : Annotator {
                 val range = TextRange(startOffset-1, endOffset)
                 holder.newAnnotation(HighlightSeverity.INFORMATION, "Argc comment tag")
                     .range(range)
-                    .textAttributes(DefaultLanguageHighlighterColors.MARKUP_TAG)
+                    .textAttributes(DefaultLanguageHighlighterColors.MARKUP_ATTRIBUTE)
                     .create()
             }
 
@@ -29,7 +29,7 @@ class ArgcCommentTagHighlighterAnnotator : Annotator {
 
     }
 
-    fun getArgcCommentTag(line: String): String? {
+    private fun getArgcCommentTag(line: String): String? {
         if (line.startsWith("# @")) {
             var directive = line.substring(2)
             if (directive.contains(' ')) {
