@@ -7,8 +7,14 @@ hello() {
 }
 
 # @cmd Build the project
+# @meta default-subcommand
 build() {
   echo "Building the project..."
+}
+
+# @cmd Release the project
+release() { build;
+  echo "Releasing the project..."
 }
 
 eval "$(argc --argc-eval "$0" "$@")"
